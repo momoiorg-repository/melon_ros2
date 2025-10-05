@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<robot name="Melon" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="prefix" default="" />
+
+    <!-- franka arm -->
+    <xacro:arg name="arm_id" default="fr3" />
+    <xacro:arg name="arm_prefix" default="$(arg prefix)" />
+    <xacro:arg name="no_prefix" default="false"/>
+    <xacro:arg name="hand" default="true" />
+    <xacro:arg name="ee_id" default="franka_hand" />
+    <xacro:arg name="special_connection" default="" />
+    <xacro:arg name="xyz_ee" default="0 0 0" />
+    <xacro:arg name="rpy_ee" default="0 0 ${-pi/4}" />
+    <xacro:arg name="tcp_xyz" default="0 0 0.1034" />
+    <xacro:arg name="tcp_rpy" default="0 0 0" />
+    <xacro:arg name="safety_distance" default="0.03" />
+    <xacro:arg name="with_sc" default="false" />
+    <xacro:arg name="ros2_control" default="false" />
+    <xacro:arg name="robot_ip" default="" />
+    <xacro:arg name="use_fake_hardware" default="false" />
+    <xacro:arg name="fake_sensor_commands" default="false" />
+    <xacro:arg name="gazebo" default="false" />
+    <xacro:arg name="gazebo_effort" default="false" />
+    <xacro:arg name="description_pkg" default="franka_description" />
+
+    <xacro:property name="prefix" value="$(arg arm_prefix)"/>
+    <xacro:property name="modified_prefix" value="${prefix + '_' if prefix else ''}"/>
+
+    <!-- include -->
+    <xacro:include filename="$(find melon_description)/urdf/base_v4.xacro" />
+    <xacro:include filename="$(find franka_description)/robots/common/franka_robot.xacro"/>
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+
+    <!-- base -->
+    <xacro:base prefix="$(arg prefix)"/>
+
+    <!-- franka arm -->
+    <xacro:franka_robot 
+        arm_id="fr3"
+        joint_limits="${xacro.load_yaml('$(find franka_description)/robots/fr3/joint_limits.yaml')}"
+        inertials="${xacro.load_yaml('$(find franka_description)/robots/fr3/inertials.yaml')}"
+        kinematics="${xacro.load_yaml('$(find franka_description)/robots/fr3/kinematics.yaml')}"
+        dynamics="${xacro.load_yaml('$(find franka_description)/robots/fr3/dynamics.yaml')}"
+        gazebo="$(arg gazebo)"
+        hand="$(arg hand)"
+        ee_id="$(arg ee_id)"
+        special_connection="$(arg special_connection)"
+        xyz_ee="$(arg xyz_ee)"
+        rpy_ee="$(arg rpy_ee)"
+        tcp_xyz="$(arg tcp_xyz)"
+        tcp_rpy="$(arg tcp_rpy)"
+        safety_distance="$(arg safety_distance)"
+        with_sc="$(arg with_sc)"
+        ros2_control="$(arg ros2_control)"
+        robot_ip="$(arg robot_ip)"
+        use_fake_hardware="$(arg use_fake_hardware)"
+        fake_sensor_commands="$(arg fake_sensor_commands)"
+        gazebo_effort="$(arg gazebo_effort)"
+        no_prefix="$(arg no_prefix)"
+        arm_prefix="${modified_prefix}"
+        description_pkg="$(arg description_pkg)"
+        connected_to= "">
+  </xacro:franka_robot>
+
+  <xacro:sensor_d435 parent="fr3_hand" use_nominal_extrinsics="true" add_plug="false" use_mesh="true">
+    <origin xyz="0.017 0.0 0.035" rpy="0 -1.57 3.14"/>
+  </xacro:sensor_d435>
+
+  <joint name="$(arg prefix)mid_mount_fixed" type="fixed">
+    <parent link="$(arg prefix)mid_mount"/>
+    <child link="$(arg arm_prefix)fr3_link0"/>
+    <origin xyz="0 0 0" rpy="0 0 -1.57"/>
+  </joint>
+
+</robot>

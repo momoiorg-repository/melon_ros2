@@ -1,0 +1,43 @@
+# factory map version 3.4
+# seeable_pos is the position where the object can be seen by the camera
+# pos is the position where the object is located in the factory
+# All positions are in the format [x, y, z] in meters
+_origin:
+  seeable_pos:
+  - 0.0
+  - 0.0
+  - 0.0
+  pos:
+  - 0.0
+  - 0.0
+  - 0.0
+
+rack_workpiece:
+  seeable_pos:
+  - -3.044780731201172
+  - 3.9650886058807373
+  - 1.5708
+  pos:
+  - -3.044780731201172
+  - 5.216848850250244
+  - 1.5708
+
+rack_product:
+  seeable_pos:
+  - -2.98298716545105
+  - -1.297204613685608
+  - 3.14159
+  pos:
+  - -4.3035078048706055
+  - -1.297204613685608
+  - 3.14159
+
+machining_center:
+  seeable_pos:
+  - 1.8756808042526245
+  - 1.8756808042526245
+  - 0.0
+  pos:
+  - 2.2846202850341797
+  - 1.8756808042526245
+  - 0.0

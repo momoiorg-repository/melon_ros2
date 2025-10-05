@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Melon">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import Melon urdf file -->
+    <xacro:include filename="$(find melon_description)/urdf/melon.urdf" />
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="Melon.ros2_control.xacro" />
+
+    <xacro:Melon_ros2_control 
+        name="FakeSystem" 
+        initial_positions_file="$(arg initial_positions_file)"
+        ros2_control_hardware_type="$(arg ros2_control_hardware_type)"/>
+
+</robot>
