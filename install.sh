@@ -16,7 +16,7 @@ fi
 # Download USD file from Hugging Face Hub
 echo "Downloading USD file from Hugging Face Hub..."
 
-if [ -d "assets/melon/.git" ]; then
+if [ -d "../assets/melon/.git" ]; then
   echo "Repository already exists. Pulling latest changes..."
   git -C ../assets/melon pull
 else
