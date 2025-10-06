@@ -26,14 +26,23 @@
   <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
   <exec_depend>xacro</exec_depend>
+  <exec_depend>moveit_configs_utils</exec_depend>
+  <exec_depend>moveit_ros_perception</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>moveit-ros-visualization</exec_depend>
+  <exec_depend>moveit</exec_depend>
+  <exec_depend>moveit-planners-ompl</exec_depend>
+  <exec_depend>pilz-industrial-motion-planner</exec_depend>
+  <exec_depend>moveit-planners-chomp</exec_depend>
+  <exec_depend>moveit-resources-panda-moveit-config</exec_depend>
+  <exec_depend>ros2_control</exec_depend>
+  <exec_depend>ros2_controllers</exec_depend>
+  <exec_depend>topic-based-ros2-control</exec_depend>
   <!-- The next 2 packages are required for the gazebo simulation.
        We don't include them by default to prevent installing gazebo and all its dependencies. -->
   <!-- <exec_depend>joint_trajectory_controller</exec_depend> -->
   <!-- <exec_depend>gazebo_ros_control</exec_depend> -->
   <exec_depend>melon_description</exec_depend>
-  <exec_depend>moveit_configs_utils</exec_depend>
-  <exec_depend>xacro</exec_depend>
-  <exec_depend>moveit_ros_perception</exec_depend>
 
 
   <export>
