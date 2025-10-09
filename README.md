@@ -11,9 +11,9 @@ This project provides the following features when running in the @factory enviro
 
 - **Providing a plugin for at_factory (mainly consisting of USD definitions)**
 - **Basic functionality for operating as a ROS2 robot, and a sample application**
-    - MoveIt2 Settings
-    - Nav2 Settings
-    - Sample application using Behavior Tree
+    - arm motion planning using MoveIt2
+    - autonomouse navigation using Nav2
+    - sample application using Behavior Tree
 
 ## 🚀 Installing
 
