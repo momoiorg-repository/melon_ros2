@@ -1,127 +1,127 @@
 # 🍈 Melon Robot @Factory with ROS2 Humble
 ![Melon in Isaac Sim](doc/imgs/melon.png)
 
-このリポジトリでは、モバイルマニピュレータ**Melon**を、**@factory**環境で実行するためのプラグインが提供されています。USDファイルのダウンロードスクリプト、ROS2 Humbleアプリケーションとして動作するMelonのデモコードが含まれています。<br>
+This repository provides a plugin for running the mobile manipulator **Melon** in the **@factory** environment. It also includes a USD file download script and Melon demo code running as a ROS2 Humble application.<br>
 
-## 🎯 概要
+## 🎯 Overview
 
-**Melon**は、モバイルマニピュレータロボットで、@factory環境においてNVIDIA Isaac Simと連携して使用することが前提です。
+**Melon** is a mobile arm robot designed to be used in conjunction with NVIDIA Isaac Sim in the @factory environment.
 
-このプロジェクトでは、@factory環境で動作する際、以下の機能を提供します：
+This project provides the following features when running in the @factory environment:
 
-- **at_factoryに対するプラグインの提供（主にUSD定義からなる）**
-- **ROS２ロボットとして動作するための基本機能、および、サンプル・アプリケーション**
-    - MoveIt!設定
-    - Nav2設定
-    - Behavior Treeを使用したサンプル・アプリケーション
+- **Providing a plugin for at_factory (mainly consisting of USD definitions)**
+- **Basic functionality for operating as a ROS2 robot, and a sample application**
+    - MoveIt2 Settings
+    - Nav2 Settings
+    - Sample application using Behavior Tree
 
-## 🚀 インストール
+## 🚀 Installing
 
-### 1. @factory環境へのプラグイン
+### 1. Plugging into the @factory environment
 
-@factoryへのプラグイン方法は[at_facoryリポジトリ](https://github.com/momoiorg-repository/at_factory.git)を参照してください<br>
-参考までに、USDの実体はこちらのリポジトリの[finstall.shスクリプト](https://github.com/momoiorg-repository/at_factory?tab=readme-ov-file#finstallsh-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88)にあり、自動的にダンロードされるようになっています
 
-### 2. ROS2ロボットとして動作させるためのdockerの実行  
-以下の手順を実行してください
+For details on how to plug into @factory, please refer to the [at_factory repository](https://github.com/momoiorg-repository/at_factory.git)<br>
+For reference, the actual USD is in the [finstall.sh script](https://github.com/momoiorg-repository/at_factory?tab=readme-ov-file#finstallsh-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88) in this repository, and it will be downloaded automatically.
 
-## ROS２関連設定  
-### 1.リポジトリのクローン
+### 2. Running Docker to run Melon as a ROS2 robot  
+Follow these steps:
+
+## ROS2 related settings  
+### 1.Clone the repository
 ```bash
 git clone https://github.com/momoiorg-repository/melon_ros2.git
 cd melon_ros2
 ```
 
-### 2. ROS2環境設定
-環境変数を設定するために`.env`ファイルを編集：
+### 2. ROS2 environment setup
+Edit the `.env` file to set the environment variables:
 
 ```bash
-# .envファイルの設定例
-ROS_DOMAIN_ID=80                    # ROSドメインID
-CONTAINER_NAME=melon_ros2_app  # コンテナ名
+# Example of .env file settings
+ROS_DOMAIN_ID=80                    # ROS Domain ID
+CONTAINER_NAME=melon_ros2_app  # container name
 ```
 
-### 3. Dockerコンテナのビルドと起動
+### 3. Building and running a Docker container
 
-以下のスクリプトを実行することで **docker image作成** → **dockerコンテナ作成** → **接続** まで一括実行できます。
+By running the following script, you can create a Docker image, create a Docker container, and then connect to it all at once.
 
 ```bash
 ./build.sh
 ```
-コンテナ内に接続されたら、表示に従って初期設定を行ってください。<br>
+Once connected to the container, follow the prompts to perform the initial setup.<br>
 
-- 初回のみ上記スクリプトを実行してください
-- 2回目以降は以下で直接接続できます（VSCodeを使用している場合は自動的に実行されます）：
+- Run the above script only the first time.
+- From the second time onwards, you can connect directly using the following (,or this will run automatically if you are using VSCode):
 
 ```bash
 docker start <your container name>
 docker exec -it <your container name> bash
 ```
 
-## 🤖 使用方法
+## 🤖 How to use
 
-### @factoryへのプラグイン作業が完了していることが前提です
+### It is assumed that the plugin work to @factory has been completed.
 
-### MoveIt!とNavigation2の同時起動
-アーム制御とベース移動を同時に可能にするローンチファイル：
+### Simultaneous launch of MoveIt2 and Nav2
+Launch file that allows arm control and base movement at the same time:
 ```bash
 ros2 launch melon_bringup melon_bringup
 ```
 
-### MoveIt!のみの起動
-
-アーム制御のためのMoveIt!起動：
+### Launching MoveIt2 only case
+Launch MoveIt2 for arm control:
 
 ```bash
 ros2 launch melon_moveit_config melon_moveit.launch.py
 ```
 
-### Navigation2のみの起動
+### Launching Nav2 only case
 
-ベース移動のためのNavigation2起動：
+Launch Nav2 for base movement:
 
 ```bash
 ros2 launch melon_navigation2 navigation.launch.py
 ```
-1. `2D Pose Estimate`で初期位置を指定
-2. `Nav2 Goal`でNavigationを開始
+1. `2D Pose Estimate` (specifying the initial pose)
+2. `Nav2 Goal` (Start Navigation)
 
-### Behavior Tree と ros_actor を使ったアプリケーションの実行
+### Running an application using Behavior Tree and ros_actor
+Please refer to [here](./doc/App_README.md) for instructions on how to use the application.
 
-アプリケーションの使い方は[こちら](./doc/App_README.md)を参照してください。
+## 🐛 Troubleshooting
 
-## 🐛 トラブルシューティング
+### Common problems and solutions
 
-### よくある問題と解決法
-
-#### ROS2通信の問題
+#### ROS2 communication issues
 ```bash
-# DDS設定確認
+# Check DDS settings
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 export FASTRTPS_DEFAULT_PROFILES_FILE=/root/fastdds.xml
 ```
 
-#### GUIアプリが表示されない
-- 環境変数DISPLAYがあっているか確認
-- 間違っていれば再設定
+#### GUI apps are not displayed
+- Check that the DISPLAY environment variable is correct.
+- Change to the correct value it if it's incorrect.
 ```bash
 echo $DISPLAY
 
-# 例
+# Example
 export DISPLAY=<your IP>:0
 ```
 
-#### Isaac Sim と通信できないとき
-- Isaac Simのシミュレーションを再生してからMoveit!やNavigationを実行
-- Isaac Sim 側の ROS Bridge が起動しているか確認<br>
-- ROS_DOMAIN_ID が一致しているか確認
+#### When you can't communicate with Isaac Sim
+- Start the Isaac Sim simulation first and then run Moveit2 or Nav2.
+- Check that the ROS Bridge on the Isaac Sim side is running.
+- Check that the ROS_DOMAIN_ID matches.
 
-## 📄 ライセンス
+## Dependency
+The Melon arm is based on Franka Emika Panda without any modifications.
 
-このプロジェクトのライセンス情報については、[LICENSE](./LICENSE)ファイルを参照してください。
+## 📄 license  
+See the [LICENSE](./LICENSE) file for license information for this project.
 
-## 📚 参考
-
+## 📚 reference  
 - [at_factory](https://github.com/momoiorg-repository/isaacsim-common)
 - [franka_description](https://github.com/frankarobotics/franka_description)
 - [LimeSimulDemo](https://github.com/momoiorg-repository/LimeSimulDemo/tree/main)
