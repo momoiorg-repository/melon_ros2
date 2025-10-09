@@ -1,17 +1,19 @@
 # 🍈 Melon application sample with Behavior Tree and ros_actor
 
-> 🚧 **アプリケーションは開発中です。** 
+> 🚧 This application is currently under development.
 
-## 🚀 インストール
+## 🚀 Installation
 
-### 1. Dockerコンテナの準備
+### 1. Setting up the Docker Container
 
-dockerコンテナの立て方は、[README](../README.md)に従ってください。<br>
-以降の説明は、Dockerコンテナ内で作業します。
+Follow the instructions in the [README](../README.md) to start the Docker container.<br>
+All of the following steps should be executed inside the Docker container.
 
-### 2. 実行パッケージの登録
+### 2. Registering the Execution Package
 
-パッケージのソースは`~/pytwb_ws`にあり、以下の操作で「cm1」パッケージをそこに登録します。このパッケージには、実行可能な様々なサンプルコードが含まれています。
+The package sources are located in ~/pytwb_ws.<br>
+Use the following commands to register the package “cm1” there.
+This package contains various executable sample codes.
 
 ```
 # cd ~/pytwb_ws
@@ -21,15 +23,15 @@ Y
 > exit
 ```
 
-## サンプルコードの実行
+## Running the Sample Code
 
-以下のコマンドを実行します。
+Execute the following command:
 
 ```
 # actor
 ```
 
-これにより、Behavior Tree形式またはros_actorアクター形式のサンプルコードが実行できるコマンドプロンプトが表示されます。
+This will launch a command prompt where you can run sample code implemented in Behavior Tree format or ros_actor format.
 
 
 
