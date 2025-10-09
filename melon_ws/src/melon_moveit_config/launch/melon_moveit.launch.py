@@ -1,7 +1,7 @@
 # This code was taken from the following URL:
 # https://github.com/isaac-sim/IsaacSim-ros_workspaces/blob/main/humble_ws/src/moveit/isaac_moveit/launch/isaac_moveit.launch.py
 #
-# Modified by Sato, 2025.
+# Modified by SSatoya, 2025.
 # Changes: Adapted for Melon robot configuration and ROS2 Humble environment.
 #
 # SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
@@ -127,7 +127,7 @@ def generate_launch_description():
         ],
         output="screen",
     )
-    
+
     # ros2_control_node = Node(
     #     package="controller_manager",
     #     executable="ros2_control_node",
