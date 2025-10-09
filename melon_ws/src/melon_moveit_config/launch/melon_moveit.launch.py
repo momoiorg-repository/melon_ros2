@@ -1,6 +1,9 @@
 # This code was taken from the following URL:
 # https://github.com/isaac-sim/IsaacSim-ros_workspaces/blob/main/humble_ws/src/moveit/isaac_moveit/launch/isaac_moveit.launch.py
-
+#
+# Modified by Sato, 2025.
+# Changes: Adapted for Melon robot configuration and ROS2 Humble environment.
+#
 # SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -94,44 +97,6 @@ def generate_launch_description():
         ],
     )
 
-    # モバイルアームなので不要
-    # Static TF
-    # world2robot_tf_node = Node(
-    #     package="tf2_ros",
-    #     executable="static_transform_publisher",
-    #     name="static_transform_publisher_world_to_robot",
-    #     output="log",
-    #     arguments=[
-    #         "0.0",
-    #         "-0.64",
-    #         "0.0",
-    #         "0.0",
-    #         "0.0",
-    #         "0.0",
-    #         # "world",
-    #         # "panda_link0"],
-    #         "base_link",
-    #         "fr3_link0"],
-    #     parameters=[{"use_sim_time": LaunchConfiguration("use_sim_time")}],
-    # )
-    # hand2camera_tf_node = Node(
-    #     package="tf2_ros",
-    #     executable="static_transform_publisher",
-    #     name="static_transform_publisher_hand_to_camera",
-    #     output="log",
-    #     arguments=[
-    #         "0.04",
-    #         "0.0",
-    #         "0.04",
-    #         "0.0",
-    #         "0.0",
-    #         "0.0",
-    #         "panda_hand",
-    #         "sim_camera",
-    #     ],
-    #     parameters=[{"use_sim_time": LaunchConfiguration("use_sim_time")}],
-    # )
-
     # Publish TF
     robot_state_publisher = Node(
         package="robot_state_publisher",
@@ -162,6 +127,7 @@ def generate_launch_description():
         ],
         output="screen",
     )
+    
     # ros2_control_node = Node(
     #     package="controller_manager",
     #     executable="ros2_control_node",
