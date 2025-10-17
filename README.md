@@ -38,7 +38,7 @@ Edit the `.env` file to set the environment variables:
 
 ```bash
 # Example of .env file settings
-ROS_DOMAIN_ID=80                    # ROS Domain ID
+ROS_DOMAIN_ID=31                    # ROS Domain ID
 CONTAINER_NAME=melon_ros2_app  # container name
 ```
 
