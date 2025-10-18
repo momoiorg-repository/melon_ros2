@@ -66,7 +66,7 @@ docker exec -it <your container name> bash
 ### Simultaneous launch of MoveIt2 and Nav2
 Launch file that allows arm control and base movement at the same time:
 ```bash
-ros2 launch melon_bringup melon_bringup
+ros2 launch melon_bringup melon_bringup.launch.py
 ```
 
 ### Launching MoveIt2 only case
@@ -98,6 +98,11 @@ Please refer to [here](./doc/App_README.md) for instructions on how to use the a
 # Check DDS settings
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 export FASTRTPS_DEFAULT_PROFILES_FILE=/root/fastdds.xml
+
+# Check ROS_DOMAIN_ID setting
+# Set this to the same ROS_DOMAIN_ID as your at_factory repository.
+echo $ROS_DOMAIN_ID
+export ROS_DOMAIN_ID=<Any value>
 ```
 
 #### GUI apps are not displayed
@@ -115,7 +120,7 @@ export DISPLAY=<your IP>:0
 - Check that the ROS Bridge on the Isaac Sim side is running.
 - Check that the ROS_DOMAIN_ID matches.
 
-## Dependency
+## 🧩 Dependency
 The Melon arm is based on Franka Emika Panda without any modifications.
 
 ## 📄 license  
