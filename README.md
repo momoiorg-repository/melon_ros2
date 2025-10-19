@@ -103,6 +103,11 @@ export FASTRTPS_DEFAULT_PROFILES_FILE=/root/fastdds.xml
 # Set this to the same ROS_DOMAIN_ID as your at_factory repository.
 echo $ROS_DOMAIN_ID
 export ROS_DOMAIN_ID=<Any value>
+
+# Run the colcon build again
+cd ~/melon_ws/
+colcon build
+source install/setup.bash
 ```
 
 #### GUI apps are not displayed
