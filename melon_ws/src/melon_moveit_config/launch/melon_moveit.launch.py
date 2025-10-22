@@ -58,6 +58,7 @@ def generate_launch_description():
         .robot_description_semantic(file_path="config/Melon.srdf")
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
         .planning_pipelines(pipelines=["ompl", "pilz_industrial_motion_planner"])
+        .sensors_3d(file_path="config/sensors_3d.yaml")
         .to_moveit_configs()
     )
 
