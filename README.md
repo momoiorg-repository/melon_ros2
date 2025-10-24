@@ -125,6 +125,9 @@ export DISPLAY=<your IP>:0
 - Check that the ROS Bridge on the Isaac Sim side is running.
 - Check that the ROS_DOMAIN_ID matches.
 
+## 🗒️ Release Notes
+For details of each release, please refer to the [Release Note](./doc/release_note.md) file 
+
 ## 🧩 Dependency
 The Melon arm is based on Franka Emika Panda without any modifications.
 
