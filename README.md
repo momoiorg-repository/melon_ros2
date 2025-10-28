@@ -76,6 +76,12 @@ Launch MoveIt2 for arm control:
 ros2 launch melon_moveit_config melon_moveit.launch.py
 ```
 
+If you want to use **octomap**, please use the following launch file:
+
+```bash
+ros2 launch melon_moveit_config melon_moveit_octomap.launch.py
+```
+
 ### Launching Nav2 only case
 
 Launch Nav2 for base movement:
