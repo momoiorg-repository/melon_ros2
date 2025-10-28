@@ -1,0 +1,38 @@
+octomap_resolution: 0.02
+
+sensors:
+  - default_sensor
+
+default_sensor:
+  filtered_cloud_topic: /camera/depth/color/filtered_points
+  max_range: 5.0
+  max_update_rate: 2.0
+  padding_offset: 0.1
+  padding_scale: 1.0
+  point_cloud_topic: /camera/depth/color/points
+  point_subsample: 1
+  sensor_plugin: ""
+
+self_filter:
+  self_mask:
+    self_see_links:
+      - fr3_link0
+      - fr3_link1
+      - fr3_link2
+      - fr3_link3
+      - fr3_link4
+      - fr3_link5
+      - fr3_link6
+      - fr3_link7
+      - fr3_hand
+      - fr3_rightfinger
+      - fr3_leftfinger
+      - base_link
+      - back_left_passive_wheel_z_link
+      - back_right_passive_wheel_z_link
+      - front_left_passive_wheel_z_link
+      - front_right_passive_wheel_z_link
+      - base_scan
+      - camera_link
+      - left_wheel_1
+      - right_wheel_1
