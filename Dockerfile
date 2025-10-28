@@ -52,7 +52,11 @@ WORKDIR /root/melon_ws
 COPY ./melon_ws/src ./src
 
 # rosdep
-RUN rosdep update --rosdistro=humble && \
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends curl gnupg lsb-release ca-certificates && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get update -y && \
+    rosdep update --rosdistro=humble && \
     rosdep install --from-paths src --ignore-src -r -y
 
 # Build workspace
