@@ -1,7 +1,7 @@
-# 🍈 Melon Robot @Factory with ROS2 Humble
+# 🍈 Melon Robot @Factory with ROS2 Jazzy
 ![Melon in Isaac Sim](doc/imgs/melon.png)
 
-This repository provides a plugin for running the mobile manipulator **Melon** in the **@factory** environment. It also includes a USD file download script and Melon demo code running as a ROS2 Humble application.<br>
+This repository provides a plugin for running the mobile manipulator **Melon** in the **@factory** environment. It also includes a USD file download script and Melon demo code running as a ROS2 Jazzy application.<br>
 
 ## 🎯 Overview
 
