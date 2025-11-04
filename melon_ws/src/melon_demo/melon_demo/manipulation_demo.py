@@ -28,6 +28,7 @@ Example usage:
     -p cartesian:=False
 
 2) Move asynchronously and cancel after 1 second:
+   ⚠️ warning: Async is not working yet
    ros2 run melon_demo manipulation_demo --ros-args \
     -p position:="[1.0, 0.0, 1.0]" \
     -p quat_xyzw:="[1.0, 0.0, 0.0, 0.0]" \
@@ -41,6 +42,8 @@ from threading import Thread
 import rclpy
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.node import Node
+
+import time
 
 from pymoveit2 import MoveIt2, MoveIt2State
 from . import melon as robot  # Import Melon robot configuration
@@ -132,6 +135,7 @@ def main():
     node.get_logger().info(
         f"Moving to {{position: {list(position)}, quat_xyzw: {list(quat_xyzw)}}}"
     )
+
     moveit2.move_to_pose(
         position=position,
         quat_xyzw=quat_xyzw,
@@ -139,7 +143,7 @@ def main():
         cartesian_max_step=cartesian_max_step,
         cartesian_fraction_threshold=cartesian_fraction_threshold,
     )
-
+    
     # Synchronous or asynchronous execution processing
     if synchronous:
         # Note: the same functionality can be achieved by setting
