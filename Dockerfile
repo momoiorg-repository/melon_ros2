@@ -1,20 +1,25 @@
-FROM osrf/ros:humble-desktop-full
+FROM osrf/ros:jazzy-desktop-full
 SHELL ["/bin/bash", "-c"]
 
 # pkg install
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git python3-pip vim xterm less wget python3-colcon-common-extensions python3-rosdep x11-apps \
+    git python3-pip vim xterm less wget python3-colcon-common-extensions python3-rosdep x11-apps python3-venv\
     # Install ROS2 related packages
-    ros-humble-rmw-fastrtps-cpp \
+    ros-jazzy-rmw-fastrtps-cpp \
     # For Intel Realsense
-    ros-humble-librealsense2* \
-    ros-humble-realsense2-* \
+    ros-jazzy-librealsense2* \
+    ros-jazzy-realsense2-* \
     # For navigation2
-    ros-humble-nav2-bringup \
+    ros-jazzy-nav2-bringup \
     # For moveit!
-    ros-humble-moveit-ros-visualization \
-    ros-humble-moveit-resources-panda-moveit-config \
-    ros-humble-topic-based-ros2-control
+    ros-jazzy-moveit-ros-visualization \
+    ros-jazzy-moveit-resources-panda-moveit-config \
+    ros-jazzy-topic-based-ros2-control
+
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+RUN pip install -U pip setuptools catkin_pkg empy lark
 
 RUN pip3 uninstall -y numpy
 RUN pip3 install numpy==1.26.4
@@ -56,11 +61,11 @@ RUN apt-get update -y && \
     apt-get install -y --no-install-recommends curl gnupg lsb-release ca-certificates && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get update -y && \
-    rosdep update --rosdistro=humble && \
+    rosdep update --rosdistro=jazzy && \
     rosdep install --from-paths src --ignore-src -r -y
 
 # Build workspace
-RUN source /opt/ros/humble/setup.sh && colcon build --symlink-install
+RUN source /opt/ros/jazzy/setup.sh && colcon build --symlink-install
 
 # Build arguments (default values)
 ARG ROS_DOMAIN_ID=80
@@ -68,7 +73,7 @@ ENV ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
 
 
 RUN echo '# ROS2 setup' >> ~/.bashrc && \
-    echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc && \
+    echo 'source /opt/ros/jazzy/setup.bash' >> ~/.bashrc && \
     echo 'export ROS_DOMAIN_ID=${ROS_DOMAIN_ID}' >> ~/.bashrc && \
     echo 'export RMW_IMPLEMENTATION=rmw_fastrtps_cpp' >> ~/.bashrc && \
     echo 'export FASTRTPS_DEFAULT_PROFILES_FILE=/root/fastdds.xml' >> ~/.bashrc && \

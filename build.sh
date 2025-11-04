@@ -11,8 +11,8 @@ cd ../../
 
 # 2. build docker image
 build_docker_image(){
-  if docker images | grep -q "melon_ros2_app.*latest"; then
-    echo "Docker image 'melon_ros2_app:latest' already exists."
+  if docker images | grep -q "melon_ros2_app_jazzy.*latest"; then
+    echo "Docker image 'melon_ros2_app_jazzy:latest' already exists."
     read -p "Do you want to rebuild it? (y/N): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -22,12 +22,12 @@ build_docker_image(){
   fi
 
   echo "Building Docker image..."
-  docker build -t melon_ros2_app:latest .
+  docker build -t melon_ros2_app_jazzy:latest .
 
-  if docker images | grep -q "melon_ros2_app.*latest"; then
-    echo "Docker image 'melon_ros2_app:latest' built successfully."
+  if docker images | grep -q "melon_ros2_app_jazzy.*latest"; then
+    echo "Docker image 'melon_ros2_app_jazzy:latest' built successfully."
   else
-    echo "Failed to build Docker image 'melon_ros2_app:latest'."
+    echo "Failed to build Docker image 'melon_ros2_app_jazzy:latest'."
     exit 1
   fi
 }
@@ -60,7 +60,7 @@ run_docker_container(){
     -w /root/melon_ws \
     --tty \
     --gpus all \
-    melon_ros2_app:latest \
+    melon_ros2_app_jazzy:latest \
     tail -f /dev/null
 }
 
